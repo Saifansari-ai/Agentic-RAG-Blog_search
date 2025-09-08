@@ -25,7 +25,7 @@ class SetSidebar:
                     if qdrant_host and qdrant_api_key and gemini_api_key:
                         st.session_state.qdrant_host = qdrant_host
                         st.session_state.qdrant_api_key = qdrant_api_key
-                        st.session_state.qemini_api_key = gemini_api_key
+                        st.session_state.gemini_api_key = gemini_api_key
                         st.success("API keys saved")
                     else:
                         st.warning("Please fill all the API Keys")
