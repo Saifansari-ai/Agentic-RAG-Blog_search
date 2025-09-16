@@ -5,7 +5,7 @@ from src.logger import logging
 logging.info("App stating ")
 
 st.set_page_config(page_title="Blog Search",page_icon=":mag_right:")
-st.header(":blue[Agentic RAG with LangGraph:] :green[Blog Search]")
+st.header(":blue[Agentic RAG:] :green[Blog Search]")
 
 logging.info("app started")
 logging.info("setting up session state for credentials")

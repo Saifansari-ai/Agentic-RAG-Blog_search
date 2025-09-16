@@ -35,17 +35,19 @@ class Pipeline:
             inti = InitChomp()
             embedding_model, client, db = inti.initialise()
             if not all([embedding_model, client, db]):
+                st.warning("error in initialisation of the components")
                 return 
 
             logging.info("Initialisation done")
 
             logging.info("Retriever tools setup")
-            retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+            retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": 5})
             retriever_tool = create_retriever_tool(
                 retriever,
                 "retrieve_blog_posts",
                 "Search and return information about blog posts"
             )
+            tools = [retriever_tool]
 
             logging.info("URL link setup")
             url = st.text_input(
@@ -65,7 +67,7 @@ class Pipeline:
 
             logging.info("Getgraph funtion starting")
             Graph = GetGraph()
-            graph = Graph.get_graph(retriever_tool)
+            graph = Graph.get_graph(retriever_tool=retriever_tool)
             query = st.text_area(
                 ":bulb: Enter your query about the blog post:",
                 placeholder="e.g., What does Lilian Weng say about the types of agent memory?"
@@ -77,12 +79,10 @@ class Pipeline:
                     return
                 
                 inputs = {"messages": [HumanMessage(content=query)]}
-                # print(f"{inputs} + 1")
                 with st.spinner("Generating response..."):
                     
                     res = GenMessage()
                     response = res.generate_message(graph, inputs)
-                    # print(f"{response} + 2")
                     st.write(response)
                    
         except Exception as e:

@@ -6,7 +6,11 @@ class GenMessage:
 
         for output in graph.stream(inputs):
             for key, value in output.items():
+                print(f"{key} + 4")
+                print(f"{value} + 5")
                 if key == "generate" and isinstance(value, dict):
-                    generated_message = value.get("messages", [""])[0]
-        
+                    msgs = value.get("messages", [])
+                    if msgs:
+                        generated_message = msgs[0]
+        print(f"{generated_message} + 6")
         return generated_message

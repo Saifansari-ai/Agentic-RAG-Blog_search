@@ -85,12 +85,14 @@ def agent(state, tools):
 
     print("--CALL-AGENT--")
     messages = state["messages"]
+    print(f"{messages} + 11")
 
     model = ChatGoogleGenerativeAI(api_key=st.session_state.gemini_api_key,temperature=0,model="gemini-2.5-flash")
 
     model = model.bind_tools(tools)
 
     response = model.invoke(messages)
+    print(f"{response} = 12")
 
     return {"messages":[response]}
 
@@ -142,6 +144,7 @@ def generate(state):
     last_message = messages[-1]
 
     docs = last_message.content
+    print(f"{docs} + 13")
 
     
     prompt_template = hub.pull("rlm/rag-prompt")
@@ -193,7 +196,7 @@ class GetGraph:
                 {
                     
                     "tools": "retrieve",
-                    END: END,
+                    END: "generate",
                 },
             )
 

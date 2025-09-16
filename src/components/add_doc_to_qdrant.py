@@ -14,16 +14,18 @@ class AddDoc:
         try:
             logging.info("Document loading")
             docs = WebBaseLoader(url).load()
+            print(f"{docs} + 3")
             text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-                chunk_size=100, chunk_overlap=50
+                chunk_size=200, chunk_overlap=50
             )
             doc_chunks = text_splitter.split_documents(docs)
             uuids = [str(uuid4()) for _ in range(len(doc_chunks))]
-            BATCH_SIZE = 16  
-            for i in range(0, len(doc_chunks), BATCH_SIZE):
-                batch = doc_chunks[i:i+BATCH_SIZE]
-                batch_ids = uuids[i:i+BATCH_SIZE]
-                db.add_documents(documents=batch, ids=batch_ids)
+            print(f"{doc_chunks} + 8")
+            # BATCH_SIZE = 2
+            # for i in range(0, len(doc_chunks), BATCH_SIZE):
+            #     batch = doc_chunks[i:i+BATCH_SIZE]
+            #     batch_ids = uuids[i:i+BATCH_SIZE]
+            db.add_documents(documents=doc_chunks, ids=uuids)
             logging.info("document parsing complete")
             return True
         except Exception as e:
