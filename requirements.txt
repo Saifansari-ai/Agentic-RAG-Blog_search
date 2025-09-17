@@ -22,3 +22,5 @@ pydantic
 
 # Typing extensions
 typing-extensions
+
+-e .
