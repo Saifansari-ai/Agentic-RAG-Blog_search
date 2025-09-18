@@ -23,4 +23,8 @@ pydantic
 # Typing extensions
 typing-extensions
 
+from_root
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.15
+
 -e .
