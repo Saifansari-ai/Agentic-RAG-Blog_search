@@ -9,7 +9,7 @@ from langgraph.graph.message import add_messages
 from pydantic import BaseModel, Field
 from langchain_google_genai import ChatGoogleGenerativeAI
 import streamlit as st
-from langchain import hub
+from langchain_hub import hub
 from functools import partial
 from langchain_core.output_parsers import StrOutputParser
 from langgraph.graph import END, StateGraph, START

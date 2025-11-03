@@ -3,11 +3,12 @@ streamlit
 
 # Google Generative AI via LangChain
 langchain-google-genai
+google-generativeai
 
 # LangChain Core + Community
 langchain
-hub
 langchain-core
+langchainhub
 langchain-community
 langchain-text-splitters
 
@@ -23,9 +24,5 @@ pydantic
 
 # Typing extensions
 typing-extensions
-
-from_root
-aiohappyeyeballs==2.6.1
-aiohttp==3.12.15
 
 -e .
