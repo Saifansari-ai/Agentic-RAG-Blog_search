@@ -6,6 +6,7 @@ langchain-google-genai
 
 # LangChain Core + Community
 langchain
+hub
 langchain-core
 langchain-community
 langchain-text-splitters
